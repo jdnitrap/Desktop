@@ -167,6 +167,10 @@
         brave
         simple-scan
         vlc
+	asciiquarium
+	aalib
+	oneko
+	bottles
 
   ];
 
