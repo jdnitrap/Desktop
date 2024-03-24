@@ -171,6 +171,7 @@
 	aalib
 	oneko
 	bottles
+	neofetch
 
   ];
 
