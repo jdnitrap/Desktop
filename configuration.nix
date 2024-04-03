@@ -49,8 +49,8 @@
   #Display Manager
 
 	services.xserver.displayManager.lightdm.enable = true;
-	services.xserver.displayManager.lightdm.autoLogin.enable = true;
-	services.xserver.displayManager.lightdm.autoLogin.user = "bob";
+	#services.xserver.displayManager.lightdm.autoLogin.enable = true;
+	#services.xserver.displayManager.lightdm.autoLogin.user = "bob";
 
 	
  #Window Manager
@@ -131,6 +131,10 @@
 #	wlr.enable = true;
 #	};
 
+####Teamviewer
+
+services.teamviewer.enable = true;
+
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.bob = {
@@ -139,17 +143,7 @@
     extraGroups = [ "networkmanager" "wheel" "scanner" "lp" ];
     packages = with pkgs; [
 
-   ];
-  };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-
-        firefox
+	firefox
         kate
         thunderbird
         wget
@@ -172,8 +166,52 @@
 	oneko
 	bottles
 	neofetch
+	duf
+	ncdu_1
+	gdu
+	gdmap
+        bulk_extractor
+	xdiskusage
+	testdisk
+	terrascan
+	erdtree
+	jdiskreport
+	gnome.gnome-disk-utility
+	diskrsync
+	syncthing
 
+
+   ];
+  };
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+	rustdesk
+	teamviewer
+        
   ];
+
+
+####Work profile#####
+ users.users.work = {
+    isNormalUser = true;
+    description = "work";
+    extraGroups = [ "networkmanager" "wheel" "scanner" "lp" ];
+    packages = with pkgs; [
+
+        libreoffice
+        google-chrome
+        vlc
+   ];
+  };
+
+
+
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
