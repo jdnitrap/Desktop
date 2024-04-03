@@ -2,7 +2,22 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs,lib, ... }:
+
+# This was just added so you might what to look at it
+let
+  unstable = import (builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
+  }) {config = config.nixpkgs.config;};
+  nix-software-center = import (pkgs.fetchFromGitHub {
+    owner = "snowfallorg";
+    repo = "nix-software-center";
+    rev = "0.1.2";
+    sha256 = "xiqF1mP8wFubdsAQ1BmfjzCgOD3YZf7EGWl9i69FTls=";
+  }) {pkgs = unstable;};
+in
+#This is the end of what was added above
+
 
 {
   imports =
@@ -216,6 +231,7 @@ services = {
   environment.systemPackages = with pkgs; [
 	rustdesk
 	teamviewer
+	nix-software-center
         
   ];
 
