@@ -184,18 +184,6 @@ services.teamviewer.enable = true;
    ];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-	rustdesk
-	teamviewer
-        
-  ];
-
-
 ####Work profile#####
  users.users.work = {
     isNormalUser = true;
@@ -208,6 +196,31 @@ services.teamviewer.enable = true;
         vlc
    ];
   };
+
+#####Syncthing
+services = {
+    syncthing = {
+        enable = true;
+        user = "myusername";
+        dataDir = "/home/myusername/Documents";    # Default folder for new synced folders
+        configDir = "/home/myusername/Documents/.config/syncthing";   # Folder for Syncthing's settings and keys
+    };
+};
+
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+	rustdesk
+	teamviewer
+        
+  ];
+
+
+
 
 
 
